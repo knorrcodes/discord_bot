@@ -144,10 +144,17 @@ client.on('message', msg => {
 
 // Happy birthday command
     else if (command === 'happybday') {
-        let taggedUser = msg.mentions.users.first();
-        msg.channel.send(`Happy Birthday to you... Happy birthday to you... happy birthday dear ${taggedUser.username}........ happy birthday to you!`, {
-            files: ["images/birthday_gif.webp"]
-        });
+        try{
+            let targetchannel = msg.guild.channels.cache.get(realmGeneralChat);
+            let taggedUser = msg.mentions.users.first();
+            targetchannel.send(`Happy Birthday to you... Happy birthday to you... happy birthday dear ${taggedUser}........ happy birthday to you!`, {
+                files: ["images/birthday_gif.webp"]
+            }); 
+        }
+        catch {
+            msg.channel.send("Something went wrong. Did you @ a user?")
+        }
+        
     }
 
 // Where I can create a new temp command
