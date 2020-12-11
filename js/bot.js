@@ -7,6 +7,7 @@ const {
 } = require('./config.json');
 
 errorsChannel = '785640637952819261';
+realmGeneralChat = '436392919356801024';
 
 client.on('ready', () => {
     console.log(`logged in as ${client.user.tag}!`);
@@ -105,7 +106,7 @@ client.on('message', msg => {
             });
         }
         catch (err) {
-            error_messages(err)
+            error_messages(err);
         }
     }
 
@@ -131,14 +132,32 @@ client.on('message', msg => {
             
         
     }
-    
+
 // jons tiny penis command
-    else if (command == 'tinypenisplease') {
+    else if (command === 'tinypenisplease') {
         msg.channel.send("Here you go...", {
             files: [
                 "images/jknop2.PNG"
             ]
-        })
+        });
+    }
+
+// Happy birthday command
+    else if (command === 'happybday') {
+        let taggedUser = msg.mentions.users.first();
+        msg.channel.send(`Happy Birthday to you... Happy birthday to you... happy birthday dear ${taggedUser.username}........ happy birthday to you!`, {
+            files: ["images/birthday_gif.webp"]
+        });
+    }
+
+// Where I can create a new temp command
+    else if (command === 'newcmd') {
+        if (msg.author.id === 304745620411777024) {
+
+        }
+        else {
+            msg.channel.send("Sorry, you dont have permission. Try being better at life.");
+        }
     }
     else {
         msg.channel.send("Sorry kid it looks like you did something wrong");
