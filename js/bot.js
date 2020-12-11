@@ -86,6 +86,7 @@ client.on('message', msg => {
 //dadjoke command
     else if (command === 'dadjoke'){
         try{
+            targetChannel = msg.guild.channels.cache.get(realmGeneralChat)
             https.get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', (response) => {
                 let data = '';
                 response.on('data', (chunk) => {
@@ -94,9 +95,9 @@ client.on('message', msg => {
 
                 response.on('end', (error) => {
                     const obj = JSON.parse(data)
-                    msg.channel.send(obj.setup);
+                    targetChannel.send(obj.setup);
                     sleep(3000).then(() => {
-                        msg.channel.send(obj.punchline);
+                        targetChannel.send(obj.punchline);
                     });
                     
                 });
@@ -134,13 +135,13 @@ client.on('message', msg => {
     }
 
 // jons tiny penis command
-    else if (command === 'tinypenisplease') {
-        msg.channel.send("Here you go...", {
-            files: [
-                "images/jknop2.PNG"
-            ]
-        });
-    }
+    // else if (command === 'tinypenisplease') {
+    //     msg.channel.send("Here you go...", {
+    //         files: [
+    //             "images/jknop2.PNG"
+    //         ]
+    //     });
+    // }
 
 // Happy birthday command
     else if (command === 'happybday') {
